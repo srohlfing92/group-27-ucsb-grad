@@ -4,8 +4,8 @@ author: "Sarah Rohlfing and Mia Guarnieri"
 date: "11/15/2021"
 output: html_document
 ---
-## Overview: 
-Sarah and Mia created a visualization of the data sourced from UCSB Office of Budget and Planning to observe the percentage of graduate students enrolled from different demographics from 2008 to 2019.
+### Overview: 
+In this report, we create a visualization to better observe the percentage of graduate students of different ethnicities enrolled at UCSB from 2008 to 2019. Data was sourced from the UCSB Office of Budget and Planning. 
 
 ```{r setup, include=FALSE, messages = FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -18,10 +18,12 @@ library(tidyverse)
 grad_ucsb <- read_csv(here("data", "ucsb_grad_data.csv"))
 ```
 
+### Visualizing annual domestic graduate enrollment at UCSB
 
+This basic column graph depicts the annual domestic graduate enrollment at UCSB from 2008-2019, color coded by student ethnicity.
 
 ```{r}
-# Creating a basic column graph showing the change in domestic graduate enrollment from 2008 - 2019
+# Creating a basic column graph 
 ggplot(data = grad_ucsb, aes(x = year_abbr, y = domestic_enrollment)) +
   geom_col(aes(fill = ethnicity), position = "fill")+ # added position = fill to change the bars from absolute counts to proportions
   labs(x = "Year",
