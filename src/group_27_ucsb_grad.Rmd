@@ -1,9 +1,11 @@
 ---
-title: "group_27_ucsb_grad"
-author: "Sarah Rohlfing And Mia Guarnieri"
+title: "Group_27_ucsb_grad"
+author: "Sarah Rohlfing and Mia Guarnieri"
 date: "11/15/2021"
 output: html_document
 ---
+## Overview: 
+Sarah and Mia created a visualization of the data sourced from UCSB Office of Budget and Planning to observe the percentage of graduate students enrolled from different demographics from 2008 to 2019.
 
 ```{r setup, include=FALSE, messages = FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -16,13 +18,16 @@ library(tidyverse)
 grad_ucsb <- read_csv(here("data", "ucsb_grad_data.csv"))
 ```
 
-# Creating a basic column graph showing the change in domestic graduate enrollment from 2008 - 2019
+
 
 ```{r}
+# Creating a basic column graph showing the change in domestic graduate enrollment from 2008 - 2019
 ggplot(data = grad_ucsb, aes(x = year_abbr, y = domestic_enrollment)) +
   geom_col(aes(fill = ethnicity), position = "fill")+ # added position = fill to change the bars from absolute counts to proportions
   labs(x = "Year",
        y = "Percent Domestic Enrollment", 
-       title = "Domestic Graduate Enrollment Percentages ") # added labels (feel free to change!)
+       title = "Domestic Graduate Enrollment Percentages ",
+       caption = str_wrap("Figure 1: Annual UCSB graduate enrollment percentages by ethnicity 2008-2019. Data: UCSB Office of Budget and Planning")) + # added labels, title, and caption
+  theme_minimal() #setting the theme to minimal
 ```
 
