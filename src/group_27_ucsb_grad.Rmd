@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 library(here)
 library(tidyverse)
+library(calecopal)
 ```
 
 ```{r}
@@ -25,11 +26,19 @@ This basic column graph depicts the annual domestic graduate enrollment at UCSB 
 ```{r}
 # Creating a basic column graph 
 ggplot(data = grad_ucsb, aes(x = year_abbr, y = domestic_enrollment)) +
-  geom_col(aes(fill = ethnicity), position = "fill")+ # added position = fill to change the bars from absolute counts to proportions
+  geom_col(aes(fill = ethnicity), position = "fill") + # added position = fill to change the bars from absolute counts to proportions
+  scale_fill_manual(values = cal_palette(name = "kelp1", n = 10, type = "continuous")) + #adding palette
   labs(x = "Year",
        y = "Percent Domestic Enrollment", 
-       title = "Domestic Graduate Enrollment Percentages ",
-       caption = str_wrap("Figure 1: Annual UCSB graduate enrollment percentages by ethnicity 2008-2019. Data: UCSB Office of Budget and Planning")) + # added labels, title, and caption
+       title = "Domestic Graduate Enrollment Percentages ") + # added labels, title
   theme_minimal() #setting the theme to minimal
 ```
 
+**Figure 1:** Annual UCSB graduate enrollment percentages by ethnicity 2008-2019. Data: UCSB Office of Budget and Planning.
+
+### Takeaway
+
+The majority of the UCSB graduate student body is white, followed distantly by Asian/Pacific Islander, East Indian/Pakistani, and "Other" students. The university should consider implementing additional diversity, equity, and inclusion initiatives to promote increased diversity of the graduate student body and a more equitable distribution of enrolled students.
+
+### Citation
+"Campus Profiles".UCSB Office of Budget and Planning.https://bap.ucsb.edu/institutional-research/campus-profiles 
